@@ -17,24 +17,16 @@ export default {
   },
   data: function(){
     return{
-      apiSrcUrl: 'https://api.themoviedb.org/3/search/movie?api_key=5ff24ba7734ff867e412b5136fda3d11&query=',
       filmList: [],
     }
   },
   methods: {
     getApiRequest(searchText){
-      let searchPath
-      searchPath = this.apiSrcUrl + searchText
-      console.log(searchPath)
-
-      axios.get(searchPath)
+      axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
       .then((results) => {
         this.filmList = results.data.results;
-      })
+      })   
     }
-  },
-  created(){
-    this.getApiRequest();
   }
 }
 </script>
