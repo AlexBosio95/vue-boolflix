@@ -3,6 +3,9 @@
     <HelloWorld 
     :filmList= 'filmList'
     @search = 'getApiRequest'/>
+    <div class="container">
+      <h2 v-if="isEmpty" class="">List is Empty...</h2>
+    </div>
   </div>
 </template>
 
@@ -18,14 +21,26 @@ export default {
   data: function(){
     return{
       filmList: [],
+      isEmpty: true,
     }
   },
   methods: {
     getApiRequest(searchText){
-      axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
-      .then((results) => {
-        this.filmList = results.data.results;
-      })   
+      console.log(searchText)
+      this.filmList = []
+      if(!searchText == null || !searchText == '') {   
+        axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
+        .then((results) => {
+          this.filmList = results.data.results;
+          this.isEmpty = false
+        }).catch((error) => {
+          console.warn(error)
+        })   
+      } else{
+        console.warn(searchText)
+        this.isEmpty = true
+      }
+      console.log(this.isEmpty)
     }
   }
 }
