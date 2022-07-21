@@ -3,7 +3,7 @@
     <HelloWorld 
     :filmList= 'filmList'
     @search = 'getApiRequest'/>
-    <div class="container">
+    <div class="container text-center">
       <h2 v-if="isEmpty" class="">List is Empty...</h2>
     </div>
   </div>
@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     getApiRequest(searchText){
+      this.isEmpty = true
       console.log(searchText)
       this.filmList = []
       if(!searchText == null || !searchText == '') {   
@@ -41,7 +42,7 @@ export default {
         this.isEmpty = true
       }
       console.log(this.isEmpty)
-    }
+    },
   }
 }
 </script>
