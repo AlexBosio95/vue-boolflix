@@ -2,7 +2,7 @@
   <div id="app">
     <HelloWorld 
     :filmList= 'filmList'
-    @search = 'searchFilm'/>
+    @search = 'getApiRequest'/>
   </div>
 </template>
 
@@ -19,19 +19,18 @@ export default {
     return{
       apiSrcUrl: 'https://api.themoviedb.org/3/search/movie?api_key=5ff24ba7734ff867e412b5136fda3d11&query=',
       filmList: [],
-      searchPath: '',
     }
   },
   methods: {
-    getApiRequest(){
-      axios.get(this.searchPath)
+    getApiRequest(searchText){
+      let searchPath
+      searchPath = this.apiSrcUrl + searchText
+      console.log(searchPath)
+
+      axios.get(searchPath)
       .then((results) => {
         this.filmList = results.data.results;
       })
-    },
-    searchFilm(searchText){
-      this.searchPath = this.apiSrcUrl + searchText
-      console.log(this.searchPath)
     }
   },
   created(){
