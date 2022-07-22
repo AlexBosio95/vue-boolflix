@@ -18,7 +18,7 @@
 
             <!-- Star -->
 
-            <div class="d-flex pb-5 position-relative">
+            <div class="d-flex position-relative star-container">
                 <!-- <span v-for="(star,index) in getStar()" :key="index">&#11088;</span> -->
 
                 <div class="position-absolute">
@@ -90,8 +90,8 @@ export default {
         width: 100%;
     }
 
-    .description{
-        // height: 10rem;
+    .star-container{
+        height: 3rem;
     }
 
     .flag-container{
