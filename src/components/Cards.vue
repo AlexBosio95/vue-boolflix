@@ -18,14 +18,26 @@
 
             <!-- Star -->
 
-            <div class="d-flex mb-4">
-                <span v-for="(star,index) in getStar()" :key="index">&#11088;</span>
+            <div class="d-flex pb-5 position-relative">
+                <!-- <span v-for="(star,index) in getStar()" :key="index">&#11088;</span> -->
+
+                <div class="position-absolute">
+                    <i v-for="(star,index) in getStar()" :key="index" class="fa-solid fa-star"></i>
+                </div>
+
+                <div class="position-absolute">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
           </div>
 
         </div>
 
         <!-- Img Cover -->
-        <img :src="(img == null) ? 'https://demofree.sirv.com/nope-not-here.jpg' : `https://image.tmdb.org/t/p/w342/${img}`" :alt="(img)">
+        <img :src="(img == null || img == '') ? 'https://demofree.sirv.com/nope-not-here.jpg' : `https://image.tmdb.org/t/p/w342/${img}`" :alt="(img)">
 
     </div>
   
@@ -70,7 +82,7 @@ export default {
 <style lang="scss" scoped>
 
 .card{
-    width: calc(100% / 4 - 10px);
+    width: calc(100% / 5 - 10px);
     margin: 5px;
     padding: 10px;
 
