@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <HelloWorld 
-    :movieList= 'movieList'
+
+    <HeaderSite 
     @search = 'getApiRequest'/>
+
+    <MainCards 
+    :movieList= 'movieList'/>
+
     <div class="container text-center">
       <h2 v-if="isEmpty" class="">List is Empty...</h2>
-      <!-- <font-awesome-icon :icon=”['fas', 'robot']”/> -->
     </div>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import HeaderSite from './components/HeaderSite.vue';
+import MainCards from './components/MainCards.vue';
+
 import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HeaderSite,
+    MainCards,
   },
   data: function(){
     return{
