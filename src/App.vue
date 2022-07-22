@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HelloWorld 
-    :filmList= 'filmList'
+    :movieList= 'movieList'
     @search = 'getApiRequest'/>
     <div class="container text-center">
       <h2 v-if="isEmpty" class="">List is Empty...</h2>
@@ -20,7 +20,7 @@ export default {
   },
   data: function(){
     return{
-      filmList: [],
+      movieList: [],
       isEmpty: true,
     }
   },
@@ -28,20 +28,32 @@ export default {
     getApiRequest(searchText){
       this.isEmpty = true
       console.log(searchText)
-      this.filmList = []
+      this.movieList = []
       if(!searchText == null || !searchText == '') {   
         axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
         .then((results) => {
-          this.filmList = results.data.results;
-          if (this.filmList.length <= 0) {
+          this.movieList = results.data.results;
+          if (this.movieList.length <= 0) {
             this.isEmpty = true
           } else {
             this.isEmpty = false
           }
-          
         }).catch((error) => {
           console.warn(error)
-        })   
+        })
+ 
+        axios.get('https://api.themoviedb.org/3/search/tv', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
+        .then((results) => {
+          this.movieList = results.data.results;
+          if (this.movieList.length <= 0) {
+            this.isEmpty = true
+          } else {
+            this.isEmpty = false
+          }
+        }).catch((error) => {
+          console.warn(error)
+        })
+
       } else{
         this.isEmpty = true
       }

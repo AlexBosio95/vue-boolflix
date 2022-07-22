@@ -5,14 +5,14 @@
     </div>
     <button class="btn btn-primary m-3" @click="$emit('search', getSearchItem.toLowerCase())">Search</button>
     <ul class="list-group p-4">
-      <li class="list-group-item" v-for="(film, index) in filmList" :key="index">
-        <h5>{{film.title}}</h5>
-        <p class="m-0">{{film.original_title}}</p>
-        <!-- <span class="m-0">Language = {{film.original_language}}</span> -->
+      <li class="list-group-item" v-for="(movie, index) in movieList" :key="index">
+        <h5>{{movie.title}}{{movie.name}}</h5>
+        <p class="m-0">{{movie.original_title}}{{movie.original_name}}</p>
+        <!-- <span class="m-0">Language = {{movie.original_language}}</span> -->
         <div class="flag-container">
-          <div :class="(film.original_language == 'it') ? 'itFlag' : (film.original_language == 'en') ? 'enFlag' : 'noFlag'"></div>
+          <div :class="(movie.original_language == 'it') ? 'itFlag' : (movie.original_language == 'en') ? 'enFlag' : 'noFlag'"></div>
         </div>
-        <p class="m-0">Vote: {{film.vote_average}}</p>
+        <p class="m-0">Vote: {{movie.vote_average}}</p>
         </li>
     </ul>
   </div>
@@ -21,12 +21,11 @@
 <script>
 export default {
   props:{
-    filmList: Array,
+    movieList: Array,
   },
   data: function(){
     return{
       getSearchItem: '',
-      linkFlag: '',
     }
   },
   methods: {
