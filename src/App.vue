@@ -5,7 +5,8 @@
     @search = 'getApiRequest'/>
 
     <MainCards 
-    :movieList= 'movieList'/>
+    :movieList= 'movieList'
+    :seriesList = 'seriesList'/>
 
     <!-- <div class="container text-center">
       <h2 v-if="isEmpty" class="">List is Empty...</h2>
@@ -29,6 +30,7 @@ export default {
   data: function(){
     return{
       movieList: [],
+      seriesList: [],
       isEmpty: true,
     }
   },
@@ -41,23 +43,15 @@ export default {
         axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
         .then((results) => {
           this.movieList = results.data.results;
-          if (this.movieList.length <= 0) {
-            this.isEmpty = true
-          } else {
-            this.isEmpty = false
-          }
+
         }).catch((error) => {
           console.warn(error)
         })
  
         axios.get('https://api.themoviedb.org/3/search/tv', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
         .then((results) => {
-          this.movieList = results.data.results;
-          if (this.movieList.length <= 0) {
-            this.isEmpty = true
-          } else {
-            this.isEmpty = false
-          }
+          this.seriesList = results.data.results;
+
         }).catch((error) => {
           console.warn(error)
         })

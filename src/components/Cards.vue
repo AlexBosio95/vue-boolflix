@@ -82,6 +82,7 @@ export default {
 
 .card{
     width: calc(100% / 5 - 6px);
+    min-height: 378px;
     margin: 3px;
     background-color: $bgColor;
     cursor: pointer;

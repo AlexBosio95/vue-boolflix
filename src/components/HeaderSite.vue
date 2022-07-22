@@ -61,7 +61,7 @@ header{
 
       i{
         color: white;
-        padding: 5px;
+        padding: 15px;
         cursor: pointer;
       }
 

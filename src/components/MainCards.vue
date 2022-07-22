@@ -2,15 +2,23 @@
     <main>
       <div class="container">
           <div class="cards-container d-flex flex-wrap my-4">
+            
             <Cards v-for="movie in movieList" :key="movie.id" 
 
                 :title = 'movie.title'
-                :name = 'movie.name'
                 :originalTitle = 'movie.original_title'
-                :originalName = 'movie.original_name'
                 :originalLanguage = 'movie.original_language'
                 :vote = 'movie.vote_average'
                 :img = 'movie.poster_path'
+            />
+
+            <Cards v-for="serie in seriesList" :key="serie.id" 
+
+                :name = 'serie.name'
+                :originalName = 'serie.original_name'
+                :originalLanguage = 'serie.original_language'
+                :vote = 'serie.vote_average'
+                :img = 'serie.poster_path'
             />
           </div>
         </div>
@@ -31,6 +39,7 @@ export default {
 
     props:{
     movieList: Array,
+    seriesList: Array
   },
 
 }
