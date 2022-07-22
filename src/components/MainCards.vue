@@ -2,20 +2,20 @@
     <main>
       <div class="container">
           <div class="cards-container d-flex flex-wrap my-4">
-            
-            <Cards v-for="movie in movieList" :key="movie.id" 
 
-                :title = 'movie.title'
-                :originalTitle = 'movie.original_title'
-                :originalLanguage = 'movie.original_language'
-                :vote = 'movie.vote_average'
-                :img = 'movie.poster_path'
+            <Cards v-for="film in movieList" :key="film.id"
+
+                :title = 'film.title'
+                :originalTitle = 'film.original_title'
+                :originalLanguage = 'film.original_language'
+                :vote = 'film.vote_average'
+                :img = 'film.poster_path'
             />
 
-            <Cards v-for="serie in seriesList" :key="serie.id" 
+            <Cards v-for="serie in seriesList" :key="serie.id"
 
-                :name = 'serie.name'
-                :originalName = 'serie.original_name'
+                :title = 'serie.name'
+                :originalTitle = 'serie.original_name'
                 :originalLanguage = 'serie.original_language'
                 :vote = 'serie.vote_average'
                 :img = 'serie.poster_path'
@@ -49,7 +49,7 @@ export default {
 @import '../style/variabiles.scss';
 
 main{
-  height: 93vh;
+  height: 90vh;
   background-color: $bgMainColor;
   overflow-y: auto;
 }
