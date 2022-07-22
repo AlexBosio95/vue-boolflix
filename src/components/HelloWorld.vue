@@ -13,6 +13,7 @@
           <div :class="(movie.original_language == 'it') ? 'itFlag' : (movie.original_language == 'en') ? 'enFlag' : 'noFlag'"></div>
         </div>
         <p class="m-0">Vote: {{movie.vote_average}}</p>
+        <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="(movie.poster_path)">
         </li>
     </ul>
   </div>
