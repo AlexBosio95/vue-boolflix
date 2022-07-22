@@ -19,13 +19,13 @@
             <!-- Star -->
 
             <div class="d-flex mb-4">
-                <span class="stella" v-for="(star,index) in getStar()" :key="index">&#11088;</span>
+                <span v-for="(star,index) in getStar()" :key="index">&#11088;</span>
           </div>
 
         </div>
 
         <!-- Img Cover -->
-        <img :src="`https://image.tmdb.org/t/p/w342/${img}`" :alt="(img)">
+        <img :src="(img == null) ? 'https://demofree.sirv.com/nope-not-here.jpg' : `https://image.tmdb.org/t/p/w342/${img}`" :alt="(img)">
 
     </div>
   
