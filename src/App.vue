@@ -5,6 +5,7 @@
     @search = 'getApiRequest'/>
     <div class="container text-center">
       <h2 v-if="isEmpty" class="">List is Empty...</h2>
+      <!-- <font-awesome-icon :icon=”['fas', 'robot']”/> -->
     </div>
   </div>
 </template>

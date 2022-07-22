@@ -12,6 +12,9 @@
         <div class="flag-container">
           <div :class="(movie.original_language == 'it') ? 'itFlag' : (movie.original_language == 'en') ? 'enFlag' : 'noFlag'"></div>
         </div>
+        <div class="d-flex">
+          
+        </div>
         <p class="m-0">Vote: {{movie.vote_average}}</p>
         <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="(movie.poster_path)">
         </li>
@@ -27,6 +30,7 @@ export default {
   data: function(){
     return{
       getSearchItem: '',
+      numero: Math.round(this.movieList.vote_average / 2),
     }
   },
   methods: {
