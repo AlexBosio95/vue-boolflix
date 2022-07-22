@@ -7,9 +7,9 @@
     <MainCards 
     :movieList= 'movieList'/>
 
-    <div class="container text-center">
+    <!-- <div class="container text-center">
       <h2 v-if="isEmpty" class="">List is Empty...</h2>
-    </div>
+    </div> -->
 
   </div>
 </template>

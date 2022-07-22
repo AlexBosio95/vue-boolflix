@@ -1,20 +1,22 @@
 <template>
-    <div class="container">
-        <div class="cards-container d-flex flex-wrap">
-                <Cards v-for="movie in movieList" :key="movie.id" 
+    <main>
+      <div class="container">
+          <div class="cards-container d-flex flex-wrap my-4">
+            <Cards v-for="movie in movieList" :key="movie.id" 
 
-                    :title = 'movie.title'
-                    :name = 'movie.name'
-                    :originalTitle = 'movie.original_title'
-                    :originalName = 'movie.original_name'
-                    :originalLanguage = 'movie.original_language'
-                    :vote = 'movie.vote_average'
-                    :img = 'movie.poster_path'
-                />
+                :title = 'movie.title'
+                :name = 'movie.name'
+                :originalTitle = 'movie.original_title'
+                :originalName = 'movie.original_name'
+                :originalLanguage = 'movie.original_language'
+                :vote = 'movie.vote_average'
+                :img = 'movie.poster_path'
+            />
+          </div>
         </div>
     
 
-    </div>
+    </main>
 </template>
 
 <script>
@@ -35,7 +37,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../style/variabiles.scss';
 
-
+main{
+  height: 93vh;
+  background-color: $bgMainColor;
+  overflow-y: auto;
+}
 
 </style>

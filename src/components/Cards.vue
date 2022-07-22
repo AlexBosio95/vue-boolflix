@@ -1,8 +1,8 @@
 <template>
-    <div class="card">
+    <div class="card position-relative">
 
-        <div class="description">
-                <!-- Titolo -->
+        <div class="description position-absolute p-3">
+            <!-- Titolo -->
             <h5>{{title}}{{name}}</h5>
 
             <!-- Titolo originale -->
@@ -12,9 +12,6 @@
             <div class="flag-container my-3">
                 <div :class="(originalLanguage == 'it') ? 'itFlag' : (originalLanguage == 'en') ? 'enFlag' : 'noFlag'"></div>
             </div>
-
-            <!-- Vote -->
-            <!-- <p class="m-0">Vote: {{vote}}</p> -->
 
             <!-- Star -->
 
@@ -81,13 +78,33 @@ export default {
 
 <style lang="scss" scoped>
 
+@import '../style/variabiles.scss';
+
 .card{
-    width: calc(100% / 5 - 10px);
-    margin: 5px;
-    padding: 10px;
+    width: calc(100% / 5 - 6px);
+    margin: 3px;
+    background-color: $bgColor;
+    cursor: pointer;
+
+    &:hover img{
+      opacity: 0.1;
+    }
 
     img{
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .description{
+      color: white;
+      width: 100%;
+      display: none;
+    }
+
+    &:hover .description{
+      display: block;
     }
 
     .star-container{
