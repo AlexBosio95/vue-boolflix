@@ -1,19 +1,28 @@
 <template>
     <div class="card">
 
-        <!-- Titolo -->
-        <h5>{{title}}{{name}}</h5>
+        <div class="description">
+                <!-- Titolo -->
+            <h5>{{title}}{{name}}</h5>
 
-        <!-- Titolo originale -->
-        <p class="m-0">{{originalTitle}}{{originalName}}</p>
+            <!-- Titolo originale -->
+            <p class="">{{originalTitle}}{{originalName}}</p>
 
-        <!-- Flag -->
-        <div class="flag-container">
-            <div :class="(originalLanguage == 'it') ? 'itFlag' : (originalLanguage == 'en') ? 'enFlag' : 'noFlag'"></div>
+            <!-- Flag -->
+            <div class="flag-container my-3">
+                <div :class="(originalLanguage == 'it') ? 'itFlag' : (originalLanguage == 'en') ? 'enFlag' : 'noFlag'"></div>
+            </div>
+
+            <!-- Vote -->
+            <!-- <p class="m-0">Vote: {{vote}}</p> -->
+
+            <!-- Star -->
+
+            <div class="d-flex mb-4">
+                <span class="stella" v-for="(star,index) in getStar()" :key="index">&#11088;</span>
+          </div>
+
         </div>
-
-        <!-- Vote -->
-        <p class="m-0">Vote: {{vote}}</p>
 
         <!-- Img Cover -->
         <img :src="`https://image.tmdb.org/t/p/w342/${img}`" :alt="(img)">
@@ -35,9 +44,76 @@ export default {
     img: String,
   },
 
+  data() {
+      return {
+        numero: Math.round(this.vote / 2),
+      }
+    },
+
+    methods: {
+
+      getStar: function () {
+        let arrayStar = []
+
+        for (let i = 0; i < this.numero; i++) {
+          arrayStar.length++
+        }
+        console.log(arrayStar)
+
+        return arrayStar
+      }
+    }
+
 }
 </script>
 
 <style lang="scss" scoped>
+
+.card{
+    width: calc(100% / 4 - 10px);
+    margin: 5px;
+    padding: 10px;
+
+    img{
+        width: 100%;
+    }
+
+    .description{
+        // height: 10rem;
+    }
+
+    .flag-container{
+    height: 1rem;
+    width: 1.8rem;
+
+        .itFlag{
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 1rem;
+        }
+
+        .enFlag{
+        background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 1rem;
+        }
+
+        .noFlag{
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/No_flag.svg/2560px-No_flag.svg.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 1rem;
+        }
+
+}
+
+}
+
+
 
 </style>
