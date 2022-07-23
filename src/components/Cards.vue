@@ -6,7 +6,7 @@
             <h5>{{title}}</h5>
 
             <!-- Titolo originale -->
-            <p>{{original_title}}</p>
+            <p>{{originalTitle}}</p>
 
             <!-- Flag -->
             <div class="flag-container my-3">
@@ -94,6 +94,7 @@ export default {
 
 .ms_card{
     width: calc(100% / 5 - 4px);
+    min-width: 255px;
     min-height: 378px;
     margin: 2px;
     background-color: $bgColor;

@@ -7,7 +7,8 @@
     <MainCards 
     :movieList= 'movieList'
     :seriesList = 'seriesList'
-    :title="title"/>
+    :title="title"
+    :totalMovie= "totalItems"/>
 
   </div>
 </template>
@@ -30,15 +31,16 @@ export default {
       seriesList: [],
       isEmpty: true,
       apiKey: '5ff24ba7734ff867e412b5136fda3d11',
-      title: ''
+      title: '',
+      totalItems: 0,
     }
   },
   methods: {
     getApiRequest(searchText){
       this.isEmpty = true
-      console.log(searchText)
       this.movieList = []
       this.seriesList = []
+      this.totalItems = 0
 
       if(!searchText == null || !searchText == '') {   
         axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : this.apiKey } })
@@ -54,6 +56,7 @@ export default {
         .then((results) => {
           this.seriesList = results.data.results;
           this.title = 'result'
+          this.totalItems = this.movieList.length + this.seriesList.length
 
         }).catch((error) => {
           console.warn(error)
@@ -68,8 +71,8 @@ export default {
        axios.get('https://api.themoviedb.org/3/trending/all/day?', { params: { api_key : this.apiKey } })
         .then((results) => {
           this.movieList = results.data.results;
-          console.log(results.data.results)
           this.title = 'Trending'
+          this.totalItems = this.movieList.length
         }).catch((error) => {
           console.warn(error)
         })

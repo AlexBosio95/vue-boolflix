@@ -2,7 +2,8 @@
     <main>
       <div class="container">
         <h5 class="title">{{title}}</h5>
-          <div class="cards-container d-flex flex-wrap my-4">
+        <span>Total movies: {{totalMovie}}</span>
+          <div class="cards-container d-flex my-4">
 
             <Cards v-for="film in movieList" :key="film.id"
 
@@ -44,6 +45,7 @@ export default {
     movieList: Array,
     seriesList: Array,
     title: String,
+    totalMovie: Number,
   },
   data: function(){
     return{
@@ -66,6 +68,17 @@ main{
     text-transform: uppercase;
     color: white;
     margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  span{
+    color: white;
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+
+  .cards-container{
+    overflow-x: auto;
   }
 }
 
