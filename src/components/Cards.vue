@@ -1,5 +1,5 @@
 <template>
-    <div class="card position-relative">
+    <div class="ms_card position-relative">
 
         <div class="description position-absolute p-3">
             <!-- Titolo -->
@@ -80,10 +80,10 @@ export default {
 
 @import '../style/variabiles.scss';
 
-.card{
-    width: calc(100% / 5 - 6px);
+.ms_card{
+    width: calc(100% / 5 - 4px);
     min-height: 378px;
-    margin: 3px;
+    margin: 2px;
     background-color: $bgColor;
     cursor: pointer;
 
@@ -95,7 +95,6 @@ export default {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 5px;
         overflow: hidden;
     }
 
