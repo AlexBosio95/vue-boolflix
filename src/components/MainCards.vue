@@ -3,7 +3,9 @@
       <div class="container">
         <h5 class="title">{{title}}</h5>
         <span>Total movies: {{totalMovie}}</span>
-          <div class="cards-container d-flex my-4">
+          <div class="cards-container d-flex mt-2">
+
+            <h3 class="no_item" v-if="(totalMovie <= 0)">No content available</h3>
 
             <Cards v-for="film in movieList" :key="film.id"
 
@@ -25,7 +27,11 @@
                 :nVote = 'serie.vote_count'
             />
           </div>
-        </div>
+
+           <span v-if="(totalMovie > 5)" class="w-100 d-inline-block text-end mt-1 opacity-25">Scroll for more movies <i class="fa-solid fa-angles-right"></i></span>
+
+      </div>
+
     
 
     </main>
@@ -75,6 +81,14 @@ main{
     color: white;
     opacity: 0.7;
     font-size: 0.8rem;
+  }
+
+  .no_item{
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    color: white;
+    opacity: 0.5;
   }
 
   .cards-container{

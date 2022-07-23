@@ -47,6 +47,7 @@ export default {
         .then((results) => {
           this.movieList = results.data.results;
           this.title = 'result'
+          this.totalItems = this.movieList.length
           
         }).catch((error) => {
           console.warn(error)
@@ -56,7 +57,7 @@ export default {
         .then((results) => {
           this.seriesList = results.data.results;
           this.title = 'result'
-          this.totalItems = this.movieList.length + this.seriesList.length
+          this.totalItems += this.seriesList.length
 
         }).catch((error) => {
           console.warn(error)
