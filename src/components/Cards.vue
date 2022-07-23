@@ -3,10 +3,10 @@
 
         <div class="description position-absolute p-3">
             <!-- Titolo -->
-            <h5>{{title}}{{name}}</h5>
+            <h5>{{title}}</h5>
 
             <!-- Titolo originale -->
-            <p class="">{{originalTitle}}{{originalName}}</p>
+            <p>{{original_title}}</p>
 
             <!-- Flag -->
             <div class="flag-container my-3">
@@ -14,22 +14,19 @@
             </div>
 
             <!-- Star -->
-
             <div class="d-flex position-relative star-container">
-                <!-- <span v-for="(star,index) in getStar()" :key="index">&#11088;</span> -->
 
-                <div class="position-absolute">
-                    <i v-for="(star,index) in getStar()" :key="index" class="fa-solid fa-star"></i>
-                </div>
+                  <div class="position-absolute">
+                      <i v-for="(star,index) in getStar()" :key="index" class="fa-solid fa-star"></i>
+                  </div>
 
-                <div class="position-absolute">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-          </div>
+                  <div class="position-absolute">
+                      <i class="fa-regular fa-star" v-for="(n, index) in nrStar" :key="index"></i>
+                  </div>
+            </div>
+
+            <!-- Vote Number -->
+            <span>Total vote: {{nVote}}</span>
 
         </div>
 
@@ -45,17 +42,17 @@
 export default {
     props:  {
     title: String,
-    name: String,
     originalTitle: String,
-    originalName: String,
     originalLanguage: String,
     vote: Number,
     img: String,
+    nVote: Number,
   },
 
   data() {
       return {
         numero: Math.round(this.vote / 2),
+        nrStar: 5,
       }
     },
 
@@ -67,10 +64,25 @@ export default {
         for (let i = 0; i < this.numero; i++) {
           arrayStar.length++
         }
-        console.log(arrayStar)
-
         return arrayStar
-      }
+      },
+
+      // getTitle(){
+      //   if (this.title == '' || this.title == null) {
+      //     this.title = 'No Title'
+      //   } else {
+      //     this.title
+      //   }
+      // },
+
+      // getTitleOriginal(){
+      //   if (this.originalTitle == '' || this.originalTitle == null) {
+      //     this.originalTitle = 'No Title'
+      //   } else {
+      //     this.originalTitle
+      //   }
+      // },
+
     }
 
 }
@@ -109,7 +121,7 @@ export default {
     }
 
     .star-container{
-        height: 3rem;
+        height: 2rem;
     }
 
     .flag-container{

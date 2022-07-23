@@ -6,7 +6,8 @@
 
     <MainCards 
     :movieList= 'movieList'
-    :seriesList = 'seriesList'/>
+    :seriesList = 'seriesList'
+    :title="title"/>
 
   </div>
 </template>
@@ -28,6 +29,8 @@ export default {
       movieList: [],
       seriesList: [],
       isEmpty: true,
+      apiKey: '5ff24ba7734ff867e412b5136fda3d11',
+      title: ''
     }
   },
   methods: {
@@ -38,17 +41,19 @@ export default {
       this.seriesList = []
 
       if(!searchText == null || !searchText == '') {   
-        axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
+        axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : this.apiKey } })
         .then((results) => {
           this.movieList = results.data.results;
+          this.title = 'result'
           
         }).catch((error) => {
           console.warn(error)
         })
  
-        axios.get('https://api.themoviedb.org/3/search/tv', { params: { query:searchText, api_key : '5ff24ba7734ff867e412b5136fda3d11' } })
+        axios.get('https://api.themoviedb.org/3/search/tv', { params: { query:searchText, api_key : this.apiKey } })
         .then((results) => {
           this.seriesList = results.data.results;
+          this.title = 'result'
 
         }).catch((error) => {
           console.warn(error)
@@ -56,8 +61,23 @@ export default {
 
       } else{
         console.log('error')
+        this.title = 'no items'
       }
     },
+    getApiRequestTrendign(){
+       axios.get('https://api.themoviedb.org/3/trending/all/day?', { params: { api_key : this.apiKey } })
+        .then((results) => {
+          this.movieList = results.data.results;
+          console.log(results.data.results)
+          this.title = 'Trending'
+        }).catch((error) => {
+          console.warn(error)
+        })
+
+    }
+  },
+  created(){
+    this.getApiRequestTrendign()
   }
 }
 </script>

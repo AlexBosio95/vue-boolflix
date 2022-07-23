@@ -1,6 +1,7 @@
 <template>
     <main>
       <div class="container">
+        <h5 class="title">{{title}}</h5>
           <div class="cards-container d-flex flex-wrap my-4">
 
             <Cards v-for="film in movieList" :key="film.id"
@@ -10,6 +11,7 @@
                 :originalLanguage = 'film.original_language'
                 :vote = 'film.vote_average'
                 :img = 'film.poster_path'
+                :nVote = 'film.vote_count'
             />
 
             <Cards v-for="serie in seriesList" :key="serie.id"
@@ -19,6 +21,7 @@
                 :originalLanguage = 'serie.original_language'
                 :vote = 'serie.vote_average'
                 :img = 'serie.poster_path'
+                :nVote = 'serie.vote_count'
             />
           </div>
         </div>
@@ -39,8 +42,14 @@ export default {
 
     props:{
     movieList: Array,
-    seriesList: Array
+    seriesList: Array,
+    title: String,
   },
+  data: function(){
+    return{
+      
+    }
+  }
 
 }
 </script>
@@ -52,6 +61,12 @@ main{
   height: 90vh;
   background-color: $bgMainColor;
   overflow-y: auto;
+
+  .title{
+    text-transform: uppercase;
+    color: white;
+    margin-top: 20px;
+  }
 }
 
 </style>
