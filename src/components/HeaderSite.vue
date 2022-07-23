@@ -6,7 +6,10 @@
           <img src="../assets/Boolflix.png" alt="">
           <nav >
             <ul>
-              <li v-for="(navitem, index) in navMenu" :key="index">{{navitem}}</li>
+              <li :class="{'active' : (navitem.isActive)}" 
+                  v-for="(navitem, index) in navMenu" :key="index" @click="getActive(index)">
+                  {{navitem.text}}
+                  </li>
             </ul>
           </nav>
         </div>
@@ -39,12 +42,45 @@ export default {
     return{
       getSearchItem: '',
       isOpen: false,
-      navMenu: ['Home', 'Serie TV', 'Film', 'Originali', 'Aggiunti di recente', 'La mia Lista']
+      navMenu: [
+        {
+          text: 'Home',
+          isActive: true
+        },
+        {
+          text: 'Serie TV',
+          isActive: false
+        },
+        {
+          text: 'Film',
+          isActive: false
+        },
+        {
+          text: 'Originali',
+          isActive: false
+        },
+        {
+          text: 'Aggiunti di recente',
+          isActive: false
+        },
+        {
+          text: 'La mia Lista',
+          isActive: false
+        }
+
+        ]
     }
   },
   methods: {
     openSearch(){
       this.isOpen = !this.isOpen
+    },
+    getActive(currentIndex){
+      this.navMenu.forEach(element => {
+        element.isActive = false
+      });
+
+      this.navMenu[currentIndex].isActive = true
     }
 
 
@@ -83,9 +119,15 @@ header{
             opacity: 1;
           }
         }
+
+          .active{
+            opacity: 1;
+          }
       }
 
   }
+
+
 
   .search-container{
     height: 10vh;
