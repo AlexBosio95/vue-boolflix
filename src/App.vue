@@ -8,7 +8,8 @@
     :movieList= 'movieList'
     :seriesList = 'seriesList'
     :title="title"
-    :totalMovie= "totalItems"/>
+    :totalFilms= "totalFilms"
+    :totalSeries= "totalSeries"/>
 
   </div>
 </template>
@@ -31,8 +32,11 @@ export default {
       seriesList: [],
       isEmpty: true,
       apiKey: '5ff24ba7734ff867e412b5136fda3d11',
+      apiSrc: 'https://api.themoviedb.org/3/search/',
+      apiTrend: 'https://api.themoviedb.org/3/trending/all/day?',
       title: '',
-      totalItems: 0,
+      totalFilms: 0,
+      totalSeries: 0,
     }
   },
   methods: {
@@ -40,27 +44,30 @@ export default {
       this.isEmpty = true
       this.movieList = []
       this.seriesList = []
-      this.totalItems = 0
+      this.totalFilms = 0
+      this.totalSeries = 0
 
       if(!searchText == null || !searchText == '') {   
-        axios.get('https://api.themoviedb.org/3/search/movie', { params: { query:searchText, api_key : this.apiKey } })
+        axios.get(this.apiSrc + 'movie', { params: { query:searchText, api_key : this.apiKey } })
         .then((results) => {
           this.movieList = results.data.results;
-          this.title = 'result'
-          this.totalItems = this.movieList.length
-          
-        }).catch((error) => {
-          console.warn(error)
-        })
- 
-        axios.get('https://api.themoviedb.org/3/search/tv', { params: { query:searchText, api_key : this.apiKey } })
-        .then((results) => {
-          this.seriesList = results.data.results;
-          this.title = 'result'
-          this.totalItems += this.seriesList.length
+          this.title = 'result';
+          this.totalFilms = this.movieList.length;
+          console.log(this.totalItems)
 
         }).catch((error) => {
-          console.warn(error)
+          console.warn(error);
+        })
+ 
+        axios.get(this.apiSrc + 'tv', { params: { query:searchText, api_key : this.apiKey } })
+        .then((results) => {
+          this.seriesList = results.data.results;
+          this.title = 'result';
+          this.totalSeries = this.seriesList.length;
+          console.log(this.totalItems)
+
+        }).catch((error) => {
+          console.warn(error);
         })
 
       } else{
@@ -69,17 +76,17 @@ export default {
       }
     },
     getApiRequestTrendign(){
-       axios.get('https://api.themoviedb.org/3/trending/all/day?', { params: { api_key : this.apiKey } })
+       axios.get(this.apiTrend, { params: { api_key : this.apiKey } })
         .then((results) => {
           this.movieList = results.data.results;
           this.title = 'Trending'
-          this.totalItems = this.movieList.length
+          this.totalFilms = this.movieList.length
         }).catch((error) => {
           console.warn(error)
         })
-
     }
   },
+  
   created(){
     this.getApiRequestTrendign()
   }

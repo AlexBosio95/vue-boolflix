@@ -21,7 +21,7 @@
                   </div>
 
                   <div class="position-absolute">
-                      <i class="fa-regular fa-star" v-for="(n, index) in nrStar" :key="index"></i>
+                      <i class="fa-regular fa-star" v-for="(n) in nrStar" :key="n"></i>
                   </div>
             </div>
 
@@ -153,7 +153,8 @@ export default {
         height: 1rem;
         }
 
-}
+      }
+
 
 }
 

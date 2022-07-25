@@ -1,11 +1,14 @@
 <template>
     <main>
       <div class="container">
-        <h5 class="title">{{title}}</h5>
-        <span>Total movies: {{totalMovie}}</span>
-          <div class="cards-container d-flex mt-2">
 
-            <h3 class="no_item" v-if="(totalMovie <= 0)">No content available</h3>
+        <h3 class="title">{{title}}</h3>
+        
+        <h5 class="title">films</h5>
+        <span>Total Films: {{totalFilms}}</span>
+
+          <div class="cards-container d-flex mt-2">
+            <h3 class="no_item" v-if="(totalFilms <= 0)">No content available</h3>
 
             <Cards v-for="film in movieList" :key="film.id"
 
@@ -17,6 +20,17 @@
                 :nVote = 'film.vote_count'
             />
 
+          </div>
+
+          <span v-if="(totalFilms > 5)" class="w-100 d-inline-block text-end mt-1 opacity-25">Scroll for more movies <i class="fa-solid fa-angles-right"></i></span>
+
+
+          <h5 class="title">TV series</h5>
+          <span>Total Series: {{totalSeries}}</span>
+
+          <div class="cards-container d-flex mt-2">
+            <h3 class="no_item" v-if="(totalSeries <= 0)">No content available</h3>
+
             <Cards v-for="serie in seriesList" :key="serie.id"
 
                 :title = 'serie.name'
@@ -26,13 +40,12 @@
                 :img = 'serie.poster_path'
                 :nVote = 'serie.vote_count'
             />
+          
           </div>
 
-           <span v-if="(totalMovie > 5)" class="w-100 d-inline-block text-end mt-1 opacity-25">Scroll for more movies <i class="fa-solid fa-angles-right"></i></span>
+          <span v-if="(totalSeries > 5)" class="w-100 d-inline-block text-end mt-1 opacity-25">Scroll for more movies <i class="fa-solid fa-angles-right"></i></span>
 
       </div>
-
-    
 
     </main>
 </template>
@@ -51,7 +64,9 @@ export default {
     movieList: Array,
     seriesList: Array,
     title: String,
-    totalMovie: Number,
+    totalFilms: Number,
+    totalSeries: Number,
+
   },
   data: function(){
     return{
