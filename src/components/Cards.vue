@@ -3,10 +3,10 @@
 
         <div class="description position-absolute p-3">
             <!-- Titolo -->
-            <h5>{{getTitle()}}</h5>
+            <h5>{{title}}</h5>
 
             <!-- Titolo originale -->
-            <p>{{getTitleOriginal()}}</p>
+            <p>{{originalTitle}}</p>
 
             <!-- Flag -->
             <div class="flag-container my-3">
@@ -43,13 +43,25 @@
 <script>
 export default {
     props:  {
-    title: String,
-    originalTitle: String,
-    originalLanguage: String,
-    vote: Number,
-    img: String,
-    nVote: Number,
-    dateRelease: String,
+        title: {
+          type: String,
+          default:() => 'Title not available'
+        },
+        originalTitle: {
+          type: String,
+          default:() => 'Original title not available'
+        },
+        originalLanguage: String,
+        vote: Number,
+        img: {
+          type: String,
+          default: () => 'https://demofree.sirv.com/nope-not-here.jpg'
+        },
+        nVote: Number,
+        dateRelease: {
+          type: String,
+          default:() => 'Date not available'
+        },
   },
 
   data() {
@@ -70,28 +82,12 @@ export default {
         return arrayStar
       },
 
-      getTitle(){
-        if (this.title == '' || this.title == null) {
-          this.title = 'Title not available'
-        } else {
-          return this.title
-        }
-      },
-
-      getTitleOriginal(){
-        if (this.originalTitle == '' || this.originalTitle == null) {
-          this.originalTitle = 'Original Title not available'
-        } else {
-          return this.originalTitle
-        }
-      },
-
       getImage(){
-        if (this.img == '' || this.img == null) {
-          this.img = 'https://demofree.sirv.com/nope-not-here.jpg'
-          return this.img
-        } else {
-          return 'https://image.tmdb.org/t/p/w342/' + this.img
+        let pathImg
+
+        if (!this.img == '' || this.img == null) {
+          pathImg = `https://image.tmdb.org/t/p/w342/${this.img}`
+          return pathImg
         }
 
       }
