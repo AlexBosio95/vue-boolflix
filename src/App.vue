@@ -17,7 +17,6 @@
 <script>
 import HeaderSite from './components/HeaderSite.vue';
 import MainCards from './components/MainCards.vue';
-
 import axios from 'axios';
 
 export default {
@@ -78,9 +77,18 @@ export default {
     getApiRequestTrendign(){
        axios.get(this.apiTrend, { params: { api_key : this.apiKey } })
         .then((results) => {
-          this.movieList = results.data.results;
+            this.movieList = results.data.results;
+            this.totalFilms = this.movieList.length
+
+            this.movieList.forEach(element => {
+              if (element.media_type == 'tv') {
+                this.seriesList.push(element)
+              }
+              this.totalSeries = this.seriesList.length
+            });
+          
           this.title = 'Trending'
-          this.totalFilms = this.movieList.length
+          
         }).catch((error) => {
           console.warn(error)
         })

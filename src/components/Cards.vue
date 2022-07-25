@@ -3,10 +3,10 @@
 
         <div class="description position-absolute p-3">
             <!-- Titolo -->
-            <h5>{{title}}</h5>
+            <h5>{{getTitle()}}</h5>
 
             <!-- Titolo originale -->
-            <p>{{originalTitle}}</p>
+            <p>{{getTitleOriginal()}}</p>
 
             <!-- Flag -->
             <div class="flag-container my-3">
@@ -28,10 +28,12 @@
             <!-- Vote Number -->
             <span>Total vote: {{nVote}}</span>
 
+            <span class="d-inline-block w-100 mt-3"><em>Date: {{dateRelease}}</em></span> 
+
         </div>
 
         <!-- Img Cover -->
-        <img :src="(img == null || img == '') ? 'https://demofree.sirv.com/nope-not-here.jpg' : `https://image.tmdb.org/t/p/w342/${img}`" :alt="(img)">
+        <img :src="getImage()" :alt="(img)">
 
     </div>
   
@@ -47,6 +49,7 @@ export default {
     vote: Number,
     img: String,
     nVote: Number,
+    dateRelease: String,
   },
 
   data() {
@@ -67,21 +70,31 @@ export default {
         return arrayStar
       },
 
-      // getTitle(){
-      //   if (this.title == '' || this.title == null) {
-      //     this.title = 'No Title'
-      //   } else {
-      //     this.title
-      //   }
-      // },
+      getTitle(){
+        if (this.title == '' || this.title == null) {
+          this.title = 'Title not available'
+        } else {
+          return this.title
+        }
+      },
 
-      // getTitleOriginal(){
-      //   if (this.originalTitle == '' || this.originalTitle == null) {
-      //     this.originalTitle = 'No Title'
-      //   } else {
-      //     this.originalTitle
-      //   }
-      // },
+      getTitleOriginal(){
+        if (this.originalTitle == '' || this.originalTitle == null) {
+          this.originalTitle = 'Original Title not available'
+        } else {
+          return this.originalTitle
+        }
+      },
+
+      getImage(){
+        if (this.img == '' || this.img == null) {
+          this.img = 'https://demofree.sirv.com/nope-not-here.jpg'
+          return this.img
+        } else {
+          return 'https://image.tmdb.org/t/p/w342/' + this.img
+        }
+
+      }
 
     }
 

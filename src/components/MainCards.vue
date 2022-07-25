@@ -18,6 +18,7 @@
                 :vote = 'film.vote_average'
                 :img = 'film.poster_path'
                 :nVote = 'film.vote_count'
+                :dateRelease = 'film.release_date'
             />
 
           </div>
@@ -28,7 +29,7 @@
           <h5 class="title">TV series</h5>
           <span>Total Series: {{totalSeries}}</span>
 
-          <div class="cards-container d-flex mt-2">
+          <div class="cards-container d-flex my-2">
             <h3 class="no_item" v-if="(totalSeries <= 0)">No content available</h3>
 
             <Cards v-for="serie in seriesList" :key="serie.id"
@@ -39,6 +40,7 @@
                 :vote = 'serie.vote_average'
                 :img = 'serie.poster_path'
                 :nVote = 'serie.vote_count'
+                :dateRelease = 'serie.release_date'
             />
           
           </div>
