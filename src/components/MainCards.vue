@@ -108,6 +108,7 @@ main{
 
   .cards-container{
     overflow-x: auto;
+    min-height: 385px;
   }
 }
 

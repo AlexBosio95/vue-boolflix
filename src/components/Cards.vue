@@ -95,7 +95,8 @@ export default {
 .ms_card{
     width: calc(100% / 5 - 4px);
     min-width: 255px;
-    min-height: 378px;
+    min-height: 385px;
+    max-height: 385px;
     margin: 2px;
     background-color: $bgColor;
     cursor: pointer;
