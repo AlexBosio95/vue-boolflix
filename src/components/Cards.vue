@@ -26,7 +26,7 @@
             </div>
 
             <!-- Vote Number -->
-            <span>Total vote: {{nVote}}</span>
+            <span>Vote: {{nVote}}</span>
 
             <span class="d-inline-block w-100 mt-3"><em>Date: {{dateRelease}}</em></span> 
 
@@ -90,7 +90,7 @@ export default {
           return pathImg
         }
 
-      }
+      },
 
     }
 
@@ -133,6 +133,10 @@ export default {
 
     .star-container{
         height: 2rem;
+
+        i{
+          color: $starColor;
+        }
     }
 
     .flag-container{
